@@ -99,92 +99,53 @@
 
 /* ============================================================
    EXERCISE 1 — object-fit & object-position
-   ============================================================
-   The three showcase frames (.frame-cover, .frame-contain,
-   .frame-position) need a fixed height so that object-fit
-   actually has an effect.
-
-   ✏️ YOUR TURN:
-   Set a fixed height of 200px on each frame class below.
-   Then apply the correct object-fit value for each one.
-   For .frame-position also add an object-position value
-   (try "top", "bottom", "left", "right", or "50% 20%").
-
-   Reference: https://developer.mozilla.org/en-US/docs/Web/CSS/object-fit
    ============================================================ */
 
 .frame-cover {
-  height: /* ✏️ add height */ ;
+  height: 200px;
 }
 
 .frame-cover .showcase-img {
-  object-fit: /* ✏️ cover  */ ;
+  object-fit: cover;
 }
 
 .frame-contain {
-  height: /* ✏️ add height */ ;
+  height: 200px;
 }
 
 .frame-contain .showcase-img {
-  object-fit: /* ✏️ contain */ ;
+  object-fit: contain;
 }
 
 .frame-position {
-  height: /* ✏️ add height */ ;
+  height: 200px;
 }
 
 .frame-position .showcase-img {
   object-fit: cover;
-  object-position: /* ✏️ try different values */ ;
+  object-position: top;
 }
 
 
 
 /* ============================================================
    EXERCISE 2 — aspect-ratio
-   ============================================================
-   .frame-aspect should always keep a 16/9 aspect ratio.
-   This means as the card gets wider or narrower, the height
-   adjusts automatically.
-
-   ✏️ YOUR TURN:
-   Add the aspect-ratio property to .frame-aspect below.
-   Also apply object-fit: cover to its child .showcase-img.
-
-   Reference: https://developer.mozilla.org/en-US/docs/Web/CSS/aspect-ratio
    ============================================================ */
 
 .frame-aspect {
   width: 100%;
-  /* ✏️ add aspect-ratio here */
+  aspect-ratio: 16 / 9;
   overflow: hidden;
 }
 
 .frame-aspect .showcase-img {
-  /* ✏️ add object-fit here */
+  object-fit: cover;
 }
 
 
 
 /* ============================================================
    EXERCISE 3 — Hero image: mobile-first media queries
-   ============================================================
-   Right now the hero image has no height set, so it will just
-   use its natural proportions. We want to control it at each
-   breakpoint:
-
-     • Mobile (default, no media query): height 200px
-     • Small screens  (≥ 576px):  height 280px
-     • Medium screens (≥ 768px):  height 350px
-     • Large screens  (≥ 992px):  height 450px
-     • Extra large    (≥ 1200px): height 520px
-
-   ✏️ YOUR TURN:
-   1. Set the default height of .hero-img to 200px below.
-   2. Then write four @media queries (mobile-first, using min-width)
-      that progressively increase the height.
-
-   Reference: https://developer.mozilla.org/en-US/docs/Web/CSS/@media
    ============================================================ */
 
 /* Default (mobile) */
@@ -192,80 +153,67 @@
   width: 100%;
   display: block;
   object-fit: cover;
-  height: /* ✏️ 200px */ ;
+  height: 200px;
 }
 
-/* ✏️ Small — @media (min-width: 576px) { ... } */
+@media (min-width: 576px) {
+  .hero-img { height: 280px; }
+}
 
+@media (min-width: 768px) {
+  .hero-img { height: 350px; }
+}
 
-/* ✏️ Medium — @media (min-width: 768px) { ... } */
+@media (min-width: 992px) {
+  .hero-img { height: 450px; }
+}
 
-
-/* ✏️ Large — @media (min-width: 992px) { ... } */
-
-
-/* ✏️ Extra Large — @media (min-width: 1200px) { ... } */
-
+@media (min-width: 1200px) {
+  .hero-img { height: 520px; }
+}
 
 
 
 /* ============================================================
    EXERCISE 4 — Responsive grid layout with CSS Grid
-   ============================================================
-   .responsive-grid is a CSS Grid container that should change
-   the number of columns at each breakpoint:
-
-     • Mobile (default):       1 column
-     • Small  (≥ 576px):       2 columns
-     • Medium (≥ 768px):       2 columns
-     • Large  (≥ 992px):       3 columns
-     • Extra Large (≥ 1200px): 4 columns
-
-   ✏️ YOUR TURN:
-   1. Set up .responsive-grid as a 1-column grid below.
-   2. Add @media queries to increase columns at each breakpoint.
-      Use grid-template-columns: repeat(N, 1fr) to define columns.
-
-   Reference: https://developer.mozilla.org/en-US/docs/Web/CSS/grid-template-columns
    ============================================================ */
 
 /* Default (mobile, 1 column) */
 .responsive-grid {
   display: grid;
   gap: 1.25rem;
-  grid-template-columns: /* ✏️ repeat(1, 1fr) */ ;
+  grid-template-columns: repeat(1, 1fr);
 }
 
-/* ✏️ Small (≥ 576px) — 2 columns */
+@media (min-width: 576px) {
+  .responsive-grid { grid-template-columns: repeat(2, 1fr); }
+}
 
+@media (min-width: 768px) {
+  .responsive-grid { grid-template-columns: repeat(2, 1fr); }
+}
 
-/* ✏️ Medium (≥ 768px) — 2 columns */
+@media (min-width: 992px) {
+  .responsive-grid { grid-template-columns: repeat(3, 1fr); }
+}
 
-
-/* ✏️ Large (≥ 992px) — 3 columns */
-
-
-/* ✏️ Extra Large (≥ 1200px) — 4 columns */
-
+@media (min-width: 1200px) {
+  .responsive-grid { grid-template-columns: repeat(4, 1fr); }
+}
 
 
 
 /* ============================================================
    EXERCISE 5 — BONUS: Dark mode with prefers-color-scheme
-   ============================================================
-   Modern browsers can detect if the OS is in dark mode.
-   You can respond to that with the prefers-color-scheme media feature.
-
-   ✏️ YOUR TURN:
-   Write a media query using:
-     @media (prefers-color-scheme: dark)
-   Inside it, change:
-     - body background to #121212
-     - body text color to #f0f0f0
-     - .r-card background to #1e1e1e
-     - .r-card border-color to #444
-
-   Reference: https://developer.mozilla.org/en-US/docs/Web/CSS/@media/prefers-color-scheme
    ============================================================ */
 
-/* ✏️ Write your dark mode media query here */
+@media (prefers-color-scheme: dark) {
+  body {
+    background-color: #121212;
+    color: #f0f0f0;
+  }
+  .r-card {
+    background-color: #1e1e1e;
+    border-color: #444;
+  }
+}
